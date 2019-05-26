@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello jQuery</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+            function SubForm() {
+                $.ajax({
+                    type:'post',
+                    url:'/api/scrawl/',
+                    data : $('#crawl').serialize(),
+                    success: function(result) {
+                        alert(result)
+                    }
+                });
+                return false;
+            };
+        </script>
+
+    </head>
+
+    <body>
+        <div id="crawl" class="crawlform">
+            <form onsubmit="SubForm();" action="/api/crawl/" method="post">
+                {% csrf_token %}
+                {{ cform }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div>
+            <p class="greeting-id">The ID is </p>
+            <p class="greeting-content">The content is </p>
+        </div>
+    </body>
+</html>
+
